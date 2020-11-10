@@ -1,0 +1,21 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=trap-cam2
+*Date=12:41:22
+*CreatedBy=Fritzing 0.9.4.2019-12-01.CD-498-0-a1ffcea
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;SOT-23 [SMD];11.4648;-5.47806;0;Top;Q2
+2;3V;;7.97479;-1.93806;90;Bottom;5v
+3;10k;2010 [SMD];18.4748;-5.74806;0;Top;R3
+4;;springterminal-2.54mm-2;19.4048;-11.7181;90;Bottom;JP1
+5;;;9.33898;-12.6828;74.3482;Bottom;Enzo1 
+6;1k;2010 [SMD];6.70479;-6.67805;90;Top;R2
