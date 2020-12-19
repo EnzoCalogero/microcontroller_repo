@@ -8,11 +8,11 @@ int relay = 3;
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 int isr_flag = 0;
-int time_to_waite=5000; //time to wait in millisec...
+unsigned long time_to_waite=500; //time to wait in seconds...
 int status=0;
-int status_Millis=0;
-int current_Millis=0;
-int delta=0;
+float status_Millis=0.0;
+float current_Millis=0.0;
+float delta=0.0;
 
 void setup() {
   // Initialize Serial port
@@ -48,8 +48,11 @@ void loop() {
      }
     else {
       digitalWrite(relay, HIGH);
-      current_Millis = millis();
+      current_Millis = millis() / 1000.;
       delta= current_Millis - status_Millis;
+      
+      Serial.println(current_Millis);
+      Serial.println(status_Millis);
       Serial.println(delta);
       if (delta > time_to_waite) {
             status = 0;
@@ -100,9 +103,14 @@ void handleGesture() {
 void right_move() {
         //digitalWrite(relay, HIGH);       // 1. turns on
         status=1;
+        status_Millis = millis() / 1000.;
+        Serial.println("inside:");
+        Serial.println(status_Millis);
+        delay(100);
  }
 
 
  void left_move() {
-  status=0;
+       status=0;
+       status_Millis=0;
  } 
