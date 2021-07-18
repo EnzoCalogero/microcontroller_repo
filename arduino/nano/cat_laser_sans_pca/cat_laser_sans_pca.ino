@@ -39,10 +39,9 @@ void base() {
     myservo1.write(base);
     myservo0.write(high_);
     delay(200 + random(0,400));
-    
-   
   }
 }
+
 
 void traject(){
   int delta_base;
