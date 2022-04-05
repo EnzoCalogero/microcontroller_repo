@@ -3,6 +3,9 @@
  
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
+
+unsigned long myTime;
+unsigned long currentTime;
 uint8_t proximity_data = 0;
 int BUILTIN1=6;
 int BUILTIN2=8;
@@ -40,7 +43,9 @@ void setup() {
   } else {
     Serial.println(F("Something went wrong during sensor init!"));
   }
+  myTime =0;
 }
+
  
 void loop() {
   
@@ -51,6 +56,8 @@ void loop() {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
     if(proximity_data >100){
+      myTime = millis();
+      Serial.println(myTime);
       i++;
       if(i%2){
           Serial.println("pari");
@@ -58,18 +65,23 @@ void loop() {
           digitalWrite(BUILTIN1, HIGH);   // turn the LED on (HIGH is the voltage level)
           digitalWrite(BUILTIN2, LOW);   // turn the LED on (HIGH is the voltage level)
           delay(500);
-    }
-    else{
+     }
+     else{
           Serial.println("dispari");
           Serial.println(i);
           digitalWrite(BUILTIN1, LOW);   // turn the LED on (HIGH is the voltage level)
           digitalWrite(BUILTIN2, HIGH);   // turn the LED on (HIGH is the voltage level)
-      
+          delay(500);
       }
     }
   }
- 
-  
+  currentTime = millis();
+  Serial.println( currentTime - myTime);
+  if (currentTime - myTime >10000){
+          Serial.println("Stop");
+          digitalWrite(BUILTIN1, LOW);   
+          digitalWrite(BUILTIN2, LOW);  
+  }
   // Wait 250 ms before next reading
-  delay(250);
+  delay(100);
 }
