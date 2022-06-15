@@ -1,11 +1,3 @@
-/* Sweep
- by BARRAGAN <http://barraganstudio.com>
- This example code is in the public domain.
-
- modified 8 Nov 2013
- by Scott Fitzgerald
- https://www.arduino.cc/en/Tutorial/LibraryExamples/Sweep
-*/
 #include <Wire.h>
 #include <SparkFun_APDS9960.h>
  
@@ -90,16 +82,15 @@ void loop() {
   // Read the proximity value
   if ( !apds.readProximity(proximity_data) ) {
     Serial.println("Error reading proximity value");
-  } else {
+  } 
+  else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
-    if (proximity_data>100) {
-      
-      servo_routin_01();
-      }
-  
+    if (proximity_data>220) {
+       servo_routin_01();
+       }
   }
-   
-    // Wait 250 ms before next reading
+  
+  // Wait  before next reading
   delay(100);
 }
