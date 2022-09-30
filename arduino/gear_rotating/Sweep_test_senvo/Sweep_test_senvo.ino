@@ -86,7 +86,7 @@ void loop() {
   else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
-    if (proximity_data>220) {
+    if (proximity_data>200) {
        servo_routin_01();
        }
   }

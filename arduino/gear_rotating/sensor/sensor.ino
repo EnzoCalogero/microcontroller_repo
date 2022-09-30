@@ -53,16 +53,16 @@ void loop() {
     if ( apds.isGestureAvailable() ) {
       Serial.println(i);
       i=i+1;
-      if (i % 2){
-        Serial.println("pari");
-        digitalWrite(BUILTIN1, HIGH);   // turn the LED on (HIGH is the voltage level)
-        digitalWrite(BUILTIN2, LOW);   // turn the LED on (HIGH is the voltage level)
-      }
-    else {
-         Serial.println("dispari");
-         digitalWrite(BUILTIN1, LOW);   // turn the LED on (HIGH is the voltage level)
-         digitalWrite(BUILTIN2, HIGH);   // turn the LED on (HIGH is the voltage level)
-     }
+//      if (i % 2){
+//        Serial.println("pari");
+//        digitalWrite(BUILTIN1, HIGH);   // turn the LED on (HIGH is the voltage level)
+//        digitalWrite(BUILTIN2, LOW);   // turn the LED on (HIGH is the voltage level)
+//      }
+//    else {
+//         Serial.println("dispari");
+//         digitalWrite(BUILTIN1, LOW);   // turn the LED on (HIGH is the voltage level)
+//         digitalWrite(BUILTIN2, HIGH);   // turn the LED on (HIGH is the voltage level)
+//     }
     }
     
     //handleGesture1();
