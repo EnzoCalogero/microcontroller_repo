@@ -12,7 +12,8 @@ int pos = 0;    // variable to store the servo position
 int speed = 5;  // gears velocity...
 void setup() {
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-
+  pinMode(4, OUTPUT); 
+digitalWrite(4, HIGH);
  // Initialize Serial port
   Serial.begin(9600);
   Serial.println();
@@ -45,30 +46,35 @@ void setup() {
 
 void servo_routin_01() {
  //speed up
- for (speed= 1; speed<= 15; speed+=1){  
+ for (speed= 1; speed<= 3; speed+=3){  
   
-  for (pos = 0; pos <= 180; pos += speed) { // goes from 0 degrees to 180 degrees
+  for (pos = 10; pos <= 170; pos += speed) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
+    Serial.println(pos);
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15 ms for the servo to reach the position
+    delay(150);                       // waits 15 ms for the servo to reach the position
   }
-  for (pos = 180; pos >= 0; pos -= speed) { // goes from 180 degrees to 0 degrees
+  for (pos = 170; pos >= 10; pos -= speed) { // goes from 180 degrees to 0 degrees
+    Serial.println(pos);
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15 ms for the servo to reach the position
+    delay(150);                       // waits 15 ms for the servo to reach the position
   }
  }
  
  //speed down
-  for (speed= 15; speed> 1; speed-=1){  
+  for (speed= 3; speed> 1; speed-=1){  
   
-  for (pos = 0; pos <= 180; pos += speed) { // goes from 0 degrees to 180 degrees
+  for (pos = 10; pos <= 170; pos += speed) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15 ms for the servo to reach the position
+    delay(150);                       // waits 15 ms for the servo to reach the position
+    Serial.println(pos);
   }
-  for (pos = 180; pos >= 0; pos -= speed) { // goes from 180 degrees to 0 degrees
+  for (pos = 170; pos >= 10; pos -= speed) { // goes from 180 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15 ms for the servo to reach the position
+    delay(150);    
+    // waits 15 ms for the servo to reach the position
+    Serial.println(pos);
   }
  }
  
