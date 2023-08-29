@@ -4,13 +4,42 @@
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 #include <Servo.h>
+//Leds configurations
+#include <FastLED.h>
+
+#define LED_PIN     5
+#define NUM_LEDS    50
+#define BRIGHTNESS  64
+#define LED_TYPE    WS2811
+#define COLOR_ORDER GRB
+CRGB leds[NUM_LEDS];
+
+#define UPDATES_PER_SECOND 100
+
+CRGBPalette16 currentPalette;
+TBlendType    currentBlending;
+
+extern CRGBPalette16 myRedWhiteBluePalette;
+extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
+//stop leds configurations
+
+
 
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 uint8_t proximity_data = 0;
 int pos = 0;    // variable to store the servo position
 int speed = 5;  // gears velocity...
+
+
 void setup() {
+  //start leds configurations
+    FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+    FastLED.setBrightness(  BRIGHTNESS );
+    
+    currentPalette = RainbowColors_p;
+    currentBlending = LINEARBLEND;
+  //stop leds configurations
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
   pinMode(4, OUTPUT); 
 digitalWrite(4, HIGH);
@@ -45,6 +74,8 @@ digitalWrite(4, HIGH);
 }
 
 void servo_routin_01() {
+
+  
  //speed up
  for (speed= 1; speed<= 3; speed+=3){  
   

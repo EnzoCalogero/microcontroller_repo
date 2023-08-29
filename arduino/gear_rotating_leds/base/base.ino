@@ -1,19 +1,51 @@
 #include <Wire.h>
+#include <Servo.h>
+#include <FastLED.h>
 #include <SparkFun_APDS9960.h>
  
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
-#include <Servo.h>
 
+#define LED_PIN     5
+#define NUM_LEDS    10
+
+CRGB leds[NUM_LEDS];
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 uint8_t proximity_data = 0;
 int pos = 0;    // variable to store the servo position
 int speed = 5;  // gears velocity...
+
+void leds_startup() {
+    for (int j=0; j < 3;j++) {
+      for (int i = 0; i <= NUM_LEDS; i++) {
+        leds[i] = CRGB ( 255, 0,0);
+        FastLED.show();
+        delay(200);
+      }
+      for (int i = NUM_LEDS; i >= 0; i--) {
+        leds[i] = CRGB ( 0, 255, 0);
+        FastLED.show();
+        delay(200);
+      }
+    }
+    
+    for (int k=0; k <= NUM_LEDS; k++) {
+    leds[k] = CRGB(150, 0, 255);
+    FastLED.show();
+    delay(100);
+    }
+  }
+
+
+
 void setup() {
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
   pinMode(4, OUTPUT); 
 digitalWrite(4, HIGH);
+  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+
+leds_startup();
  // Initialize Serial port
   Serial.begin(9600);
   Serial.println();
@@ -46,37 +78,68 @@ digitalWrite(4, HIGH);
 
 void servo_routin_01() {
  //speed up
+   for (int k=0; k <= NUM_LEDS; k++) {
+        leds[k] = CRGB(random(0, 255), random(0, 255), random(0, 255));
+        FastLED.show();
+        delay(10);
+      }
  for (speed= 1; speed<= 3; speed+=3){  
   
   for (pos = 10; pos <= 170; pos += speed) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
+      
+        
     Serial.println(pos);
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(150);                       // waits 15 ms for the servo to reach the position
-  }
+    }
+      for (int k=0; k <= NUM_LEDS; k++) {
+        leds[k] = CRGB(random(0, 255), random(0, 255), random(0, 255));
+        FastLED.show();
+        delay(10);
+      }
   for (pos = 170; pos >= 10; pos -= speed) { // goes from 180 degrees to 0 degrees
+    
     Serial.println(pos);
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(150);                       // waits 15 ms for the servo to reach the position
-  }
+    }
  }
- 
+
+   for (int k=0; k <= NUM_LEDS; k++) {
+        leds[k] = CRGB(random(0, 255), random(0, 255), random(0, 255));
+        FastLED.show();
+        delay(10);
+      }
  //speed down
   for (speed= 3; speed> 1; speed-=1){  
   
   for (pos = 10; pos <= 170; pos += speed) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
+     
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(150);                       // waits 15 ms for the servo to reach the position
     Serial.println(pos);
   }
+    for (int k=0; k <= NUM_LEDS; k++) {
+        leds[k] = CRGB(random(0, 255), random(0, 255), random(0, 255));
+        FastLED.show();
+        delay(10);
+      }
   for (pos = 170; pos >= 10; pos -= speed) { // goes from 180 degrees to 0 degrees
+     
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(150);    
     // waits 15 ms for the servo to reach the position
     Serial.println(pos);
   }
  }
+
+    for (int k=0; k <= NUM_LEDS; k++) {
+    leds[k] = CRGB(150, 0, 255);
+    FastLED.show();
+    delay(100);
+    }
  
 }
 
