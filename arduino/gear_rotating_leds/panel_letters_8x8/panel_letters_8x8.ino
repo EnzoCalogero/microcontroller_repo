@@ -7,33 +7,33 @@
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 
 #define LED_PIN     5
-#define NUM_LEDS    27
+#define NUM_LEDS    46
 
 CRGB leds[NUM_LEDS];
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 uint8_t proximity_data = 0;
 int pos = 0;    // variable to store the servo position
-int speed = 5;  // gears velocity...
+int speed = 25;  // gears velocity...
 
 void leds_startup() {
     for (int j=0; j < 2; j++) {
       for (int i = 0; i <= NUM_LEDS; i++) {
         leds[i] = CRGB ( 255, 0,0);
         FastLED.show();
-        delay(50);
+        delay(30);
       }
       for (int i = NUM_LEDS; i >= 0; i--) {
         leds[i] = CRGB ( 0, 255, 0);
         FastLED.show();
-        delay(50);
+        delay(30);
       }
     }
     
     for (int k=0; k <= NUM_LEDS; k++) {
     leds[k] = CRGB(150, 0, 255);
     FastLED.show();
-    delay(100);
+    delay(60);
     }
   }
 
@@ -138,7 +138,7 @@ void servo_routin_01() {
     for (int k=0; k <= NUM_LEDS; k++) {
     leds[k] = CRGB(150, 0, 255);
     FastLED.show();
-    delay(100);
+    delay(60);
     }
  
 }
